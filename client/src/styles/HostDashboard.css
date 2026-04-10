@@ -1,0 +1,262 @@
+.host-controller {
+  width: 100%;
+  min-height: 100vh;
+  padding: 20px;
+  background: #f8f3ea;
+  overflow-y: auto;
+}
+
+.host-setup,
+.host-panel,
+.game-info,
+.current-team-section,
+.prompt-section,
+.team-item,
+.prompt-card,
+.session-code-pill,
+.host-qr,
+.button-disconnect,
+.error-message,
+.success-message {
+  border: 3px solid #000;
+  border-radius: 10px;
+  box-shadow: 6px 6px 0 #000;
+  background: #fffaf2;
+}
+
+.host-setup,
+.host-panel {
+  width: 100%;
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.host-setup h1,
+.host-header h1 {
+  margin: 0;
+  font-size: 1.9rem;
+  font-weight: 900;
+}
+
+.host-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.host-setup > p {
+  font-weight: 700;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 0.82rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.team-input-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.form-group input,
+.prompt-toolbar input,
+.prompt-toolbar select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 3px solid #000;
+  border-radius: 10px;
+  box-shadow: 6px 6px 0 #000;
+  font-size: 14px;
+}
+
+.game-info,
+.current-team-section,
+.prompt-section {
+  margin-bottom: 14px;
+  padding: 14px;
+}
+
+.info-card {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(120px, 1fr));
+  gap: 8px;
+}
+
+.info-item .label {
+  font-size: 0.7rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.info-item .value {
+  font-size: 0.96rem;
+  font-weight: 900;
+}
+
+.host-token,
+.join-url,
+.team-score {
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.qr-wrapper {
+  margin-top: 10px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.session-code-pill {
+  padding: 10px 12px;
+  letter-spacing: 0.15em;
+  font-size: 1.2rem;
+  font-weight: 900;
+  background: #ffd966;
+}
+
+.host-qr {
+  width: 170px;
+  height: 170px;
+  background: #fff;
+}
+
+.team-display {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.team-name {
+  font-size: 1.4rem;
+  font-weight: 900;
+}
+
+.prompt-card {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.prompt-type {
+  width: fit-content;
+  border: 3px solid #000;
+  border-radius: 8px;
+  font-size: 0.74rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  padding: 5px 10px;
+}
+
+.prompt-type.move { background: #ffd6d6; }
+.prompt-type.talk { background: #ffe4b8; }
+.prompt-type.create { background: #d8edff; }
+.prompt-type.wildcard { background: #e7dcff; }
+
+.prompt-text {
+  margin: 0;
+  font-size: 1.04rem;
+  font-weight: 900;
+  line-height: 1.35;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.prompt-toolbar {
+  display: grid;
+  grid-template-columns: 1fr 150px auto;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.prompt-filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.prompt-filter-btn.active {
+  background: #ffd966;
+}
+
+.teams-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.team-item {
+  padding: 10px;
+  display: flex;
+  gap: 8px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.team-title {
+  font-size: 0.9rem;
+  font-weight: 900;
+}
+
+.button-disconnect {
+  padding: 8px 10px;
+  font-weight: 900;
+  cursor: pointer;
+  background: #fff;
+}
+
+.error-message {
+  background: #ffd8d8;
+  padding: 10px;
+  font-weight: 800;
+}
+
+.success-message {
+  background: #d7f7c7;
+  padding: 10px;
+  font-weight: 800;
+}
+
+@media (max-width: 900px) {
+  .info-card {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .prompt-toolbar {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 680px) {
+  .host-controller {
+    padding: 10px;
+  }
+
+  .host-setup,
+  .host-panel {
+    padding: 14px;
+  }
+
+  .info-card {
+    grid-template-columns: 1fr;
+  }
+
+  .team-input-row {
+    grid-template-columns: 1fr;
+  }
+}

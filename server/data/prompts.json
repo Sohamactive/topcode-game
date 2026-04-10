@@ -1,0 +1,177 @@
+[
+  {
+    "id": "move-001",
+    "type": "Move",
+    "text": "Everyone stand up and jump 3 times together!"
+  },
+  {
+    "id": "move-002",
+    "type": "Move",
+    "text": "Team captain does 5 jumping jacks while team cheers."
+  },
+  {
+    "id": "move-003",
+    "type": "Move",
+    "text": "Swap seats with someone from another team, then swap back."
+  },
+  {
+    "id": "move-004",
+    "type": "Move",
+    "text": "Strike your team's power pose and hold it for 10 seconds."
+  },
+  {
+    "id": "move-005",
+    "type": "Move",
+    "text": "March around the room making eye contact with 3 other people."
+  },
+  {
+    "id": "move-006",
+    "type": "Move",
+    "text": "Do your best impression of a superhero and fly to another team."
+  },
+  {
+    "id": "move-007",
+    "type": "Move",
+    "text": "Team does a synchronized wave with your arms, left to right."
+  },
+  {
+    "id": "move-008",
+    "type": "Move",
+    "text": "Spin around once, then give your team a high-five."
+  },
+  {
+    "id": "move-009",
+    "type": "Move",
+    "text": "Reach as high as you can, then touch your toes—repeat 3 times."
+  },
+  {
+    "id": "move-010",
+    "type": "Move",
+    "text": "Walk backward to the next team and introduce yourselves."
+  },
+  {
+    "id": "talk-001",
+    "type": "Talk",
+    "text": "Go around your team: complete this sentence: 'If I could change one thing at work...'"
+  },
+  {
+    "id": "talk-002",
+    "type": "Talk",
+    "text": "Tell your team your superpower and why you have it."
+  },
+  {
+    "id": "talk-003",
+    "type": "Talk",
+    "text": "Shout out one fun fact about each teammate you just learned."
+  },
+  {
+    "id": "talk-004",
+    "type": "Talk",
+    "text": "Together, come up with a team motto and say it 3 times."
+  },
+  {
+    "id": "talk-005",
+    "type": "Talk",
+    "text": "What's one thing you're excited to explore in today's session? Share!"
+  },
+  {
+    "id": "talk-006",
+    "type": "Talk",
+    "text": "Tell your team about a time you solved a problem together."
+  },
+  {
+    "id": "talk-007",
+    "type": "Talk",
+    "text": "Describe your ideal product in 30 seconds—have your team add one feature each."
+  },
+  {
+    "id": "talk-008",
+    "type": "Talk",
+    "text": "Ask your team: 'What would our perfect customer day look like?'"
+  },
+  {
+    "id": "talk-009",
+    "type": "Talk",
+    "text": "Discuss: What's one skill every team member brings to the table?"
+  },
+  {
+    "id": "talk-010",
+    "type": "Talk",
+    "text": "Share your team's biggest win from the last quarter."
+  },
+  {
+    "id": "create-001",
+    "type": "Create",
+    "text": "Sketch a product that doesn't exist yet. Title it and present it!"
+  },
+  {
+    "id": "create-002",
+    "type": "Create",
+    "text": "Build a tower with office supplies. Make it at least 12 inches tall."
+  },
+  {
+    "id": "create-003",
+    "type": "Create",
+    "text": "Name a new ice cream flavor together, then pitch it like a commercial."
+  },
+  {
+    "id": "create-004",
+    "type": "Create",
+    "text": "Create a team logo using only paper and markers. Explain the inspiration."
+  },
+  {
+    "id": "create-005",
+    "type": "Create",
+    "text": "Invent a new holiday and describe 3 traditions for it."
+  },
+  {
+    "id": "create-006",
+    "type": "Create",
+    "text": "Design a new feature for a product your team loves. Draw or describe it."
+  },
+  {
+    "id": "create-007",
+    "type": "Create",
+    "text": "Write a 4-line team song or rap. Perform it for the room."
+  },
+  {
+    "id": "create-008",
+    "type": "Create",
+    "text": "Build a Rube Goldberg machine with paper, pens, and tape. Test it once."
+  },
+  {
+    "id": "create-009",
+    "type": "Create",
+    "text": "Create a meme or funny sign about innovation. Show and explain it."
+  },
+  {
+    "id": "create-010",
+    "type": "Create",
+    "text": "Design a new parking lot for your company. What would make it amazing?"
+  },
+  {
+    "id": "wildcard-001",
+    "type": "Wildcard",
+    "text": "Your choice: Move, Talk, or Create. What does your team need right now?"
+  },
+  {
+    "id": "wildcard-002",
+    "type": "Wildcard",
+    "text": "Team votes: Pick any previous prompt and do it again, but twice as energetic!"
+  },
+  {
+    "id": "wildcard-003",
+    "type": "Wildcard",
+    "text": "Surprise! You get to lead the whole room in a 20-second dance or chant."
+  },
+  {
+    "id": "wildcard-004",
+    "type": "Wildcard",
+    "text": "Your pick: Teach another team something cool, or learn from them."
+  },
+  {
+    "id": "wildcard-005",
+    "type": "Wildcard",
+    "text": "Combine a Move with a Talk: Do an activity while explaining why you chose it."
+  }
+]
