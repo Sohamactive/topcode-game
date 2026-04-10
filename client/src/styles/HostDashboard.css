@@ -213,6 +213,39 @@
   font-weight: 900;
 }
 
+.prompt-edit-box {
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.prompt-edit-box input,
+.prompt-edit-box select {
+  width: 100%;
+  padding: 8px 10px;
+  border: 2px solid #000;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  background: #fff;
+}
+
+.prompt-enable-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.prompt-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 96px;
+}
+
 .button-disconnect {
   padding: 8px 10px;
   font-weight: 900;

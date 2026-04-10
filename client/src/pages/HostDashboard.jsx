@@ -9,6 +9,8 @@ export default function HostDashboard() {
   const [promptList, setPromptList] = useState([])
   const [promptFilterType, setPromptFilterType] = useState('All')
   const [newPrompt, setNewPrompt] = useState({ type: 'Move', text: '' })
+  const [editingPromptId, setEditingPromptId] = useState(null)
+  const [editingPrompt, setEditingPrompt] = useState({ text: '', type: 'Move', enabled: true })
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const [message, setMessage] = useState('')
@@ -117,6 +119,39 @@ export default function HostDashboard() {
       await refreshPrompts(gameState.id)
       await refreshGame(gameState.id)
       setMessage(response.data.message)
+    })
+  }
+
+  const handleStartEditPrompt = (prompt) => {
+    setEditingPromptId(prompt.id)
+    setEditingPrompt({
+      text: prompt.text || '',
+      type: prompt.type || 'Move',
+      enabled: Boolean(prompt.enabled)
+    })
+  }
+
+  const handleCancelEditPrompt = () => {
+    setEditingPromptId(null)
+    setEditingPrompt({ text: '', type: 'Move', enabled: true })
+  }
+
+  const handleSavePromptEdit = async (promptId) => {
+    await withHostCall(async () => {
+      const payload = {
+        text: editingPrompt.text,
+        type: editingPrompt.type,
+        enabled: editingPrompt.enabled
+      }
+      const response = await axios.put(
+        `/api/admin/games/${gameState.id}/prompts/${promptId}`,
+        payload,
+        { headers: hostHeaders }
+      )
+      await refreshPrompts(gameState.id)
+      await refreshGame(gameState.id)
+      setMessage(response.data.message || 'Prompt updated')
+      handleCancelEditPrompt()
     })
   }
 
@@ -266,10 +301,53 @@ export default function HostDashboard() {
                 <div className="team-info">
                   <div className="team-title">[{prompt.type}] {prompt.text}</div>
                   <div className="team-score">{prompt.visible_in_game ? 'Visible in game' : 'Hidden in game'}</div>
+                  {editingPromptId === prompt.id ? (
+                    <div className="prompt-edit-box">
+                      <input
+                        type="text"
+                        value={editingPrompt.text}
+                        onChange={(e) => setEditingPrompt((prev) => ({ ...prev, text: e.target.value }))}
+                        placeholder="Prompt text"
+                      />
+                      <select
+                        value={editingPrompt.type}
+                        onChange={(e) => setEditingPrompt((prev) => ({ ...prev, type: e.target.value }))}
+                      >
+                        <option>Move</option>
+                        <option>Talk</option>
+                        <option>Create</option>
+                        <option>Wildcard</option>
+                      </select>
+                      <label className="prompt-enable-toggle">
+                        <input
+                          type="checkbox"
+                          checked={editingPrompt.enabled}
+                          onChange={(e) => setEditingPrompt((prev) => ({ ...prev, enabled: e.target.checked }))}
+                        />
+                        Enabled
+                      </label>
+                    </div>
+                  ) : null}
                 </div>
-                <button className="button" onClick={() => handleTogglePromptVisibility(prompt.id, prompt.visible_in_game)} disabled={loading}>
-                  {prompt.visible_in_game ? 'Hide' : 'Show'}
-                </button>
+                <div className="prompt-actions">
+                  <button className="button" onClick={() => handleTogglePromptVisibility(prompt.id, prompt.visible_in_game)} disabled={loading}>
+                    {prompt.visible_in_game ? 'Hide' : 'Show'}
+                  </button>
+                  {editingPromptId === prompt.id ? (
+                    <>
+                      <button className="button button-success" onClick={() => handleSavePromptEdit(prompt.id)} disabled={loading}>
+                        Save
+                      </button>
+                      <button className="button button-secondary" onClick={handleCancelEditPrompt} disabled={loading}>
+                        Cancel
+                      </button>
+                    </>
+                  ) : (
+                    <button className="button button-secondary" onClick={() => handleStartEditPrompt(prompt)} disabled={loading}>
+                      Edit
+                    </button>
+                  )}
+                </div>
               </div>
             ))}
           </div>

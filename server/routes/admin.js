@@ -385,9 +385,12 @@ export function createAdminRouter(app, activeGames, broadcastGameState) {
       if (!['Move', 'Talk', 'Create', 'Wildcard'].includes(type)) {
         return res.status(400).json({ error: 'Invalid prompt type' });
       }
+      const cleanText = String(text).trim();
+      if (!cleanText) return res.status(400).json({ error: 'Prompt text required' });
+      if (cleanText.length > 500) return res.status(400).json({ error: 'Prompt text too long (max 500 chars)' });
 
       const id = uuidv4();
-      await runAsync('INSERT INTO prompts (id, text, type, enabled) VALUES (?, ?, ?, 1)', [id, text, type]);
+      await runAsync('INSERT INTO prompts (id, text, type, enabled) VALUES (?, ?, ?, 1)', [id, cleanText, type]);
       const prompt = await getAsync('SELECT * FROM prompts WHERE id = ?', [id]);
 
       await refreshPromptPool(game);
@@ -397,6 +400,60 @@ export function createAdminRouter(app, activeGames, broadcastGameState) {
     } catch (error) {
       console.error('Error adding prompt during game:', error);
       res.status(500).json({ error: 'Failed to add prompt' });
+    }
+  });
+
+  // Edit prompt (text/type/enabled) in host admin view
+  router.put('/games/:gameId/prompts/:promptId', async (req, res) => {
+    try {
+      const game = activeGames.get(req.params.gameId);
+      if (!game) return res.status(404).json({ error: 'Game not found' });
+      if (!ensureHostAuthorized(req, res, game)) return;
+
+      const promptId = req.params.promptId;
+      const { text, type, enabled } = req.body;
+      const updates = [];
+      const params = [];
+
+      if (text !== undefined) {
+        const cleanText = String(text).trim();
+        if (!cleanText) return res.status(400).json({ error: 'Prompt text required' });
+        if (cleanText.length > 500) return res.status(400).json({ error: 'Prompt text too long (max 500 chars)' });
+        updates.push('text = ?');
+        params.push(cleanText);
+      }
+
+      if (type !== undefined) {
+        if (!['Move', 'Talk', 'Create', 'Wildcard'].includes(type)) {
+          return res.status(400).json({ error: 'Invalid prompt type' });
+        }
+        updates.push('type = ?');
+        params.push(type);
+      }
+
+      if (enabled !== undefined) {
+        updates.push('enabled = ?');
+        params.push(Boolean(enabled) ? 1 : 0);
+      }
+
+      if (updates.length === 0) {
+        return res.status(400).json({ error: 'No fields to update' });
+      }
+
+      updates.push('updated_at = CURRENT_TIMESTAMP');
+      params.push(promptId);
+      await runAsync(`UPDATE prompts SET ${updates.join(', ')} WHERE id = ?`, params);
+      const prompt = await getAsync('SELECT * FROM prompts WHERE id = ?', [promptId]);
+      if (!prompt) return res.status(404).json({ error: 'Prompt not found' });
+
+      await refreshPromptPool(game);
+      logGameEvent(game, `Host updated a ${prompt.type} prompt.`);
+      broadcastGameState(req.params.gameId);
+
+      res.json({ prompt, message: 'Prompt updated' });
+    } catch (error) {
+      console.error('Error updating prompt in game admin:', error);
+      res.status(500).json({ error: 'Failed to update prompt' });
     }
   });
 
